@@ -1,4 +1,4 @@
-# The Storm Forged Studios
+# CC Warhammer
 
 Professional 3D art studio website with multi-language support (English/Chinese).
 

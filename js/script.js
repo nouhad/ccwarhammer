@@ -1,4 +1,4 @@
-// The Storm Forged Studios JavaScript
+// CC Warhammer JavaScript
 // Multi-language support and interactive features
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -143,5 +143,5 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Console message for developers
-    console.log('The Storm Forged Studios website loaded successfully!');
+    console.log('CC Warhammer website loaded successfully!');
 });
