@@ -1,7 +1,42 @@
-// CCWarhammer JavaScript
-// This is a basic template file - add your custom JavaScript here
+// The Storm Forged Studios JavaScript
+// Multi-language support and interactive features
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Current language state
+    let currentLang = 'en';
+
+    // Language Switch functionality
+    const langButtons = document.querySelectorAll('.lang-btn');
+    
+    langButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const lang = this.getAttribute('data-lang');
+            switchLanguage(lang);
+            
+            // Update active button state
+            langButtons.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+
+    function switchLanguage(lang) {
+        currentLang = lang;
+        document.documentElement.lang = lang;
+        
+        // Update all elements with data-en and data-zh attributes
+        const elements = document.querySelectorAll('[data-en][data-zh]');
+        elements.forEach(el => {
+            const text = el.getAttribute(`data-${lang}`);
+            if (text) {
+                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                    el.placeholder = text;
+                } else {
+                    el.textContent = text;
+                }
+            }
+        });
+    }
+
     // Mobile menu toggle
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
     const navLinks = document.querySelector('.nav-links');
@@ -31,9 +66,13 @@ document.addEventListener('DOMContentLoaded', function() {
             const targetElement = document.querySelector(targetId);
             
             if (targetElement) {
-                targetElement.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
+                const headerOffset = 80;
+                const elementPosition = targetElement.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
                 });
             }
         });
@@ -50,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.clientHeight;
             
-            if (window.scrollY >= sectionTop - 100) {
+            if (window.scrollY >= sectionTop - 150) {
                 current = section.getAttribute('id');
             }
         });
@@ -63,6 +102,46 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // Contact form handling
+    const contactForm = document.getElementById('contact-form');
+    const formStatus = document.getElementById('form-status');
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value
+            };
+
+            // Simulate form submission
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = submitBtn.getAttribute(`data-sending-${currentLang}`) || (currentLang === 'en' ? 'Sending...' : '发送中...');
+            submitBtn.disabled = true;
+
+            // Simulate async submission (replace with actual API call)
+            setTimeout(() => {
+                formStatus.className = 'form-status success';
+                formStatus.textContent = formStatus.getAttribute(`data-success-${currentLang}`) || (currentLang === 'en' 
+                    ? 'Message sent successfully! We will get back to you soon.' 
+                    : '信息已成功发送！我们会尽快回复您。');
+                
+                contactForm.reset();
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    formStatus.className = 'form-status';
+                }, 5000);
+            }, 1500);
+        });
+    }
+
     // Console message for developers
-    console.log('CCWarhammer website loaded successfully!');
+    console.log('The Storm Forged Studios website loaded successfully!');
 });

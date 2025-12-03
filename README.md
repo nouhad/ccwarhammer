@@ -1,6 +1,6 @@
-# CCWarhammer
+# The Storm Forged Studios
 
-A basic HTML template website for CCWarhammer. This template provides a starting point that you can customize with your own content.
+Professional 3D art studio website with multi-language support (English/Chinese).
 
 ## Project Structure
 
@@ -16,30 +16,36 @@ ccwarhammer/
 
 ## Features
 
-- Responsive design that works on desktop and mobile
-- Clean, modern styling with a dark theme
-- Smooth scrolling navigation
-- Hero section with call-to-action
-- About, Gallery, and Contact sections
-- Fixed navigation header
+- **Multi-language Support**: English and Chinese language toggle
+- **Responsive Design**: Works on desktop and mobile devices
+- **Dark Theme**: Professional dark aesthetic with gold accents
+- **Smooth Scrolling**: Navigation with smooth scroll behavior
+- **Contact Form**: Interactive contact form with validation
+- **Portfolio Grid**: 6-item portfolio showcase
+- **Services Section**: 3 service cards highlighting offerings
+
+## Sections
+
+1. **Hero**: Main landing section with tagline and CTA
+2. **About Us**: Company background and experience
+3. **Services**: Character & Creature Art, Weapons & Vehicles, Props & Environments
+4. **Portfolio**: Visual showcase of work samples
+5. **Contact**: Contact form for inquiries
 
 ## Getting Started
 
 1. Open `index.html` in a web browser to view the website
-2. Edit `index.html` to change the content
+2. Edit `index.html` to change content (update both `data-en` and `data-zh` attributes for multi-language)
 3. Modify `css/style.css` to customize the styling
-4. Add your JavaScript functionality in `js/script.js`
+4. Update `js/script.js` for custom functionality
 
-## Customization
+## Language Support
 
-Replace the placeholder content in each section with your own:
+All text elements support both English and Chinese through data attributes:
+- `data-en`: English text
+- `data-zh`: Chinese text
 
-- **Header/Navigation**: Update the logo and navigation links
-- **Hero Section**: Add your own headline and call-to-action
-- **About Section**: Add information about your community
-- **Gallery Section**: Replace placeholder images with your own
-- **Contact Section**: Add your contact information or a form
-- **Footer**: Update copyright and add social links
+Users can toggle between languages using the EN/中文 buttons in the header.
 
 ## License
 
