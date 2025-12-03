@@ -23,8 +23,8 @@ document.addEventListener('DOMContentLoaded', function() {
         currentLang = lang;
         document.documentElement.lang = lang;
         
-        // Update all elements with data-en and data-zh attributes
-        const elements = document.querySelectorAll('[data-en][data-zh]');
+        // Update all elements with data-en, data-zh, and data-ko attributes
+        const elements = document.querySelectorAll('[data-en][data-zh][data-ko]');
         elements.forEach(el => {
             const text = el.getAttribute(`data-${lang}`);
             if (text) {
