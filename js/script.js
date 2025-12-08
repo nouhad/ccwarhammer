@@ -142,6 +142,21 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Hero Slideshow
+    const slides = document.querySelectorAll('.hero-slide');
+    let currentSlide = 0;
+
+    function nextSlide() {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+    }
+
+    // Change slide every 5 seconds
+    if (slides.length > 0) {
+        setInterval(nextSlide, 5000);
+    }
+
     // Console message for developers
     console.log('CC Warhammer website loaded successfully!');
 });
