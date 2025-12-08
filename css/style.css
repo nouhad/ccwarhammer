@@ -568,6 +568,16 @@ footer {
     }
 }
 
+@media (min-width: 769px) and (max-width: 1024px) {
+    .game-titles-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .game-titles-heading {
+        font-size: 1.75rem;
+    }
+}
+
 @media (max-width: 480px) {
     .game-titles-grid {
         grid-template-columns: 1fr;
