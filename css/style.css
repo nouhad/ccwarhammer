@@ -43,7 +43,7 @@ nav {
 }
 
 .logo h1 {
-    color: #c9a227;
+    color: #30A0D2;
     font-size: 1.5rem;
     font-weight: bold;
 }
@@ -63,7 +63,7 @@ nav {
 }
 
 .nav-links a:hover {
-    color: #c9a227;
+    color: #30A0D2;
 }
 
 /* Language Switch */
@@ -85,13 +85,13 @@ nav {
 }
 
 .lang-btn:hover {
-    border-color: #c9a227;
-    color: #c9a227;
+    border-color: #30A0D2;
+    color: #30A0D2;
 }
 
 .lang-btn.active {
-    background-color: #c9a227;
-    border-color: #c9a227;
+    background-color: #30A0D2;
+    border-color: #30A0D2;
     color: #111;
 }
 
@@ -116,7 +116,7 @@ nav {
 .hero-content h2 {
     font-size: 3rem;
     margin-bottom: 1.5rem;
-    color: #c9a227;
+    color: #30A0D2;
     line-height: 1.2;
 }
 
@@ -130,7 +130,7 @@ nav {
 .cta-button {
     display: inline-block;
     padding: 14px 35px;
-    background-color: #c9a227;
+    background-color: #30A0D2;
     color: #111;
     text-decoration: none;
     border-radius: 5px;
@@ -142,7 +142,7 @@ nav {
 }
 
 .cta-button:hover {
-    background-color: #e0b82f;
+    background-color: #4DB8E8;
     transform: translateY(-2px);
 }
 
@@ -155,7 +155,7 @@ section h2 {
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 3rem;
-    color: #c9a227;
+    color: #30A0D2;
 }
 
 /* About Section */
@@ -170,7 +170,7 @@ section h2 {
 }
 
 .about-block h3 {
-    color: #c9a227;
+    color: #30A0D2;
     font-size: 1.5rem;
     margin-bottom: 1rem;
 }
@@ -203,7 +203,7 @@ section h2 {
 
 .service-card:hover {
     transform: translateY(-5px);
-    border-color: #c9a227;
+    border-color: #30A0D2;
 }
 
 .service-icon {
@@ -212,7 +212,7 @@ section h2 {
 }
 
 .service-card h3 {
-    color: #c9a227;
+    color: #30A0D2;
     font-size: 1.3rem;
     margin-bottom: 1rem;
 }
@@ -262,7 +262,7 @@ section h2 {
 }
 
 .portfolio-overlay span {
-    color: #c9a227;
+    color: #30A0D2;
     font-weight: bold;
     font-size: 1.1rem;
 }
@@ -283,7 +283,7 @@ section h2 {
 
 .form-group label {
     display: block;
-    color: #c9a227;
+    color: #30A0D2;
     margin-bottom: 0.5rem;
     font-weight: 500;
 }
@@ -303,7 +303,7 @@ section h2 {
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: #c9a227;
+    border-color: #30A0D2;
 }
 
 .form-group textarea {
@@ -361,7 +361,7 @@ footer {
     display: block;
     width: 25px;
     height: 3px;
-    background-color: #c9a227;
+    background-color: #30A0D2;
     position: relative;
     transition: background-color 0.3s ease;
 }
@@ -372,7 +372,7 @@ footer {
     position: absolute;
     width: 25px;
     height: 3px;
-    background-color: #c9a227;
+    background-color: #30A0D2;
     transition: transform 0.3s ease;
 }
 
