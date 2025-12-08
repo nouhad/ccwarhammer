@@ -22,7 +22,7 @@ The carousel is configured in `index.html` with the following slides:
 1. **Upload Images**: Place your images in this directory (`images/carousel/`)
 2. **Name Your Images**: Use descriptive names (e.g., `slide1.jpg`, `slide2.jpg`, etc.)
 3. **Update HTML**: Edit `index.html` and update the background image URLs in the hero section
-   - Find the `.hero-slide` elements (around lines 37-40)
+   - Find the `.hero-slide` elements (around lines 50-53)
    - Change `url('...')` to point to your new images
    - Example: `style="background-image: url('images/carousel/slide1.jpg')"`
 

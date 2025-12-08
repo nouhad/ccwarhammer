@@ -50,7 +50,7 @@ The homepage features a rotating carousel with 4 background images. To upload an
    - Supported formats: JPG, PNG, or WebP
    - Optimize for web (< 500KB per image recommended)
 
-2. **Update the HTML**: Edit `index.html` and find the hero slideshow section (around lines 36-41)
+2. **Update the HTML**: Edit `index.html` and find the hero slideshow section (around lines 50-53)
    - Update the `background-image` URL for each `.hero-slide` element
    - Change from placeholder URLs to your image paths
 
