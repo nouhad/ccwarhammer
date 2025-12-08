@@ -11,11 +11,13 @@ This directory contains the background images for the homepage carousel slidesho
 
 ## Current Carousel Slides
 
-The carousel is configured in `index.html` with the following slides:
+The carousel currently uses placeholder images. When you add your own images, you can use filenames like:
 1. slide1.jpg - Epic 3D Environments
 2. slide2.jpg - Character Design
 3. slide3.jpg - Vehicle Assets
 4. slide4.jpg - Weapon Models
+
+(Or use any descriptive filenames you prefer)
 
 ## How to Add or Update Images
 
