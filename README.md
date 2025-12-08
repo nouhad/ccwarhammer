@@ -12,6 +12,7 @@ ccwarhammer/
 ├── js/
 │   └── script.js       # JavaScript functionality
 ├── images/
+│   ├── logo/           # Logo image for header
 │   └── carousel/       # Background carousel images
 └── README.md           # This file
 ```
@@ -40,6 +41,22 @@ ccwarhammer/
 2. Edit `index.html` to change content (update both `data-en` and `data-zh` attributes for multi-language)
 3. Modify `css/style.css` to customize the styling
 4. Update `js/script.js` for custom functionality
+
+## Customizing the Logo
+
+The website header displays a logo image in the top-left corner. To use your own logo:
+
+1. **Upload Logo**: Place your logo image in the `images/logo/` directory
+   - File name: `logo.png` (or `logo.svg` for vector graphics)
+   - Recommended size: 150-200px width × 40-60px height for PNG
+   - Format: PNG with transparent background (recommended) or SVG
+   - File size: Keep under 100KB for optimal loading
+
+2. **Auto-sizing**: The logo automatically scales to 50px height while maintaining aspect ratio
+   - Maximum width is capped at 200px
+   - If you need different dimensions, edit the `.logo-image` CSS class in `css/style.css`
+
+For detailed instructions, see the README in the `images/logo/` directory.
 
 ## Customizing Carousel Background Images
 
