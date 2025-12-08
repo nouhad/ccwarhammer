@@ -47,6 +47,22 @@ All text elements support both English and Chinese through data attributes:
 
 Users can toggle between languages using the EN/中文 buttons in the header.
 
+## Deployment
+
+This website is automatically deployed to GitHub Pages when changes are pushed to the `main` branch.
+
+The deployment is handled by a GitHub Actions workflow (`.github/workflows/deploy-to-pages.yml`) that:
+1. Triggers on every push to the `main` branch
+2. Uploads the entire repository content as a static site
+3. Deploys it to GitHub Pages
+
+To deploy changes:
+1. Merge your changes into the `main` branch
+2. The workflow will automatically run and deploy the site
+3. The site will be available at: `https://nouhad.github.io/ccwarhammer/`
+
+You can also manually trigger the deployment using the "workflow_dispatch" option in the GitHub Actions tab.
+
 ## License
 
 This project is open source and available for customization.
