@@ -48,6 +48,14 @@ nav {
     font-weight: bold;
 }
 
+.logo-image {
+    height: 50px;
+    width: auto;
+    max-width: 200px;
+    object-fit: contain;
+    display: block;
+}
+
 .nav-links {
     display: flex;
     list-style: none;
