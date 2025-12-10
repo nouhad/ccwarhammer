@@ -170,12 +170,15 @@ document.addEventListener('DOMContentLoaded', function() {
             const img = this.querySelector('img');
             const caption = this.querySelector('.portfolio-overlay span');
             
-            lightbox.style.display = 'block';
-            lightboxImg.src = img.src;
-            lightboxCaption.textContent = caption.textContent;
-            
-            // Prevent body scroll when lightbox is open
-            document.body.style.overflow = 'hidden';
+            if (img && caption) {
+                lightbox.style.display = 'block';
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt;
+                lightboxCaption.textContent = caption.textContent;
+                
+                // Prevent body scroll when lightbox is open
+                document.body.style.overflow = 'hidden';
+            }
         });
     });
 
