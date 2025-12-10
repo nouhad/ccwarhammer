@@ -157,6 +157,56 @@ document.addEventListener('DOMContentLoaded', function() {
         setInterval(nextSlide, 5000);
     }
 
+    // Portfolio Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    const lightboxClose = document.querySelector('.lightbox-close');
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+    // Open lightbox when portfolio item is clicked
+    portfolioItems.forEach(item => {
+        item.addEventListener('click', function() {
+            const img = this.querySelector('img');
+            const caption = this.querySelector('.portfolio-overlay span');
+            
+            lightbox.style.display = 'block';
+            lightboxImg.src = img.src;
+            lightboxCaption.textContent = caption.textContent;
+            
+            // Prevent body scroll when lightbox is open
+            document.body.style.overflow = 'hidden';
+        });
+    });
+
+    // Close lightbox when X is clicked
+    if (lightboxClose) {
+        lightboxClose.addEventListener('click', function() {
+            closeLightbox();
+        });
+    }
+
+    // Close lightbox when clicking outside the image
+    if (lightbox) {
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+    }
+
+    // Close lightbox with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && lightbox.style.display === 'block') {
+            closeLightbox();
+        }
+    });
+
+    function closeLightbox() {
+        lightbox.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
     // Console message for developers
     console.log('CC Warhammer website loaded successfully!');
 });
