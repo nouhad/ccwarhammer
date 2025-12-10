@@ -208,6 +208,29 @@ section h2 {
 /* About Section */
 .about {
     background-color: #111111;
+    background-image: url('../images/logo/logo.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    position: relative;
+}
+
+.about::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #111111;
+    opacity: 0.85;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.about .container {
+    position: relative;
+    z-index: 1;
 }
 
 .about-content {
