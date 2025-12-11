@@ -210,6 +210,130 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.style.overflow = 'auto';
     }
 
+    // Game Titles Carousel
+    const carousel = document.querySelector('.game-titles-carousel');
+    if (carousel) {
+        const grid = carousel.querySelector('.game-titles-grid');
+        const prevBtn = carousel.querySelector('.carousel-arrow-prev');
+        const nextBtn = carousel.querySelector('.carousel-arrow-next');
+        const items = grid.querySelectorAll('.game-title-item');
+        
+        let currentIndex = 0;
+        let itemsPerView = 4;
+        let autoScrollInterval = null;
+        let isHovered = false;
+        
+        // Calculate items per view based on screen size
+        function updateItemsPerView() {
+            const width = window.innerWidth;
+            if (width <= 480) {
+                itemsPerView = 1;
+            } else if (width <= 768) {
+                itemsPerView = 2;
+            } else if (width <= 1024) {
+                itemsPerView = 3;
+            } else {
+                itemsPerView = 4;
+            }
+            updateCarousel();
+        }
+        
+        function updateCarousel() {
+            const totalItems = items.length;
+            const maxIndex = Math.max(0, totalItems - itemsPerView);
+            
+            // Clamp current index
+            currentIndex = Math.max(0, Math.min(currentIndex, maxIndex));
+            
+            // Calculate translate based on the first item's position
+            if (items.length > 0) {
+                const firstItem = items[0];
+                const itemWidth = firstItem.offsetWidth;
+                const gap = 20; // matches CSS gap
+                const translateX = -(currentIndex * (itemWidth + gap));
+                
+                grid.style.transform = `translateX(${translateX}px)`;
+            }
+            
+            // Update button states
+            prevBtn.disabled = currentIndex === 0;
+            nextBtn.disabled = currentIndex >= maxIndex;
+        }
+        
+        function goToNext() {
+            const maxIndex = Math.max(0, items.length - itemsPerView);
+            if (currentIndex < maxIndex) {
+                currentIndex++;
+            } else {
+                // Loop back to start
+                currentIndex = 0;
+            }
+            updateCarousel();
+        }
+        
+        function startAutoScroll() {
+            if (autoScrollInterval) {
+                clearInterval(autoScrollInterval);
+            }
+            // Auto-scroll every 3 seconds
+            autoScrollInterval = setInterval(() => {
+                if (!isHovered) {
+                    goToNext();
+                }
+            }, 3000);
+        }
+        
+        function stopAutoScroll() {
+            if (autoScrollInterval) {
+                clearInterval(autoScrollInterval);
+                autoScrollInterval = null;
+            }
+        }
+        
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateCarousel();
+            }
+            // Restart auto-scroll after manual interaction
+            stopAutoScroll();
+            startAutoScroll();
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            const maxIndex = Math.max(0, items.length - itemsPerView);
+            if (currentIndex < maxIndex) {
+                currentIndex++;
+                updateCarousel();
+            }
+            // Restart auto-scroll after manual interaction
+            stopAutoScroll();
+            startAutoScroll();
+        });
+        
+        // Pause auto-scroll on hover
+        carousel.addEventListener('mouseenter', () => {
+            isHovered = true;
+        });
+        
+        carousel.addEventListener('mouseleave', () => {
+            isHovered = false;
+        });
+        
+        // Update on window resize
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                updateItemsPerView();
+            }, 100);
+        });
+        
+        // Initial setup
+        updateItemsPerView();
+        startAutoScroll();
+    }
+
     // Console message for developers
     console.log('CC Warhammer website loaded successfully!');
 });
