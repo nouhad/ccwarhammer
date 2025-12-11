@@ -238,6 +238,9 @@ document.addEventListener('DOMContentLoaded', function() {
             updateCarousel();
         }
         
+        // Constants
+        const CAROUSEL_GAP = 20; // matches CSS gap property
+        
         function updateCarousel() {
             const totalItems = items.length;
             const maxIndex = Math.max(0, totalItems - itemsPerView);
@@ -249,8 +252,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (items.length > 0) {
                 const firstItem = items[0];
                 const itemWidth = firstItem.offsetWidth;
-                const gap = 20; // matches CSS gap
-                const translateX = -(currentIndex * (itemWidth + gap));
+                const translateX = -(currentIndex * (itemWidth + CAROUSEL_GAP));
                 
                 grid.style.transform = `translateX(${translateX}px)`;
             }
@@ -269,6 +271,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 currentIndex = 0;
             }
             updateCarousel();
+        }
+        
+        function restartAutoScroll() {
+            stopAutoScroll();
+            startAutoScroll();
         }
         
         function startAutoScroll() {
@@ -295,20 +302,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 currentIndex--;
                 updateCarousel();
             }
-            // Restart auto-scroll after manual interaction
-            stopAutoScroll();
-            startAutoScroll();
+            restartAutoScroll();
         });
         
         nextBtn.addEventListener('click', () => {
-            const maxIndex = Math.max(0, items.length - itemsPerView);
-            if (currentIndex < maxIndex) {
-                currentIndex++;
-                updateCarousel();
-            }
-            // Restart auto-scroll after manual interaction
-            stopAutoScroll();
-            startAutoScroll();
+            goToNext();
+            restartAutoScroll();
         });
         
         // Pause auto-scroll on hover
