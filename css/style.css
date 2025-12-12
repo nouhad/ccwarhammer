@@ -494,11 +494,25 @@ section h2 {
     color: #30A0D2;
 }
 
-.game-titles-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+.game-titles-carousel {
+    position: relative;
     margin-top: 2rem;
+}
+
+.game-titles-wrapper {
+    overflow: hidden;
+    padding: 0 10px;
+}
+
+.game-titles-grid {
+    display: flex;
+    gap: 20px;
+    transition: transform 0.5s ease;
+}
+
+.game-titles-grid .game-title-item {
+    flex: 0 0 calc(25% - 15px);
+    min-width: 0;
 }
 
 .game-title-item {
@@ -545,6 +559,46 @@ section h2 {
     font-size: 0.95rem;
     display: block;
     text-align: center;
+}
+
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(48, 160, 210, 0.8);
+    border: none;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: all 0.3s ease;
+}
+
+.carousel-arrow:hover {
+    background: rgba(48, 160, 210, 1);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-arrow:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.carousel-arrow:disabled:hover {
+    transform: translateY(-50%) scale(1);
+}
+
+.carousel-arrow-prev {
+    left: -25px;
+}
+
+.carousel-arrow-next {
+    right: -25px;
 }
 
 /* Contact Section */
@@ -686,12 +740,25 @@ footer {
         grid-template-columns: 1fr;
     }
 
-    .game-titles-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .game-titles-grid .game-title-item {
+        flex: 0 0 calc(50% - 10px);
     }
 
     .game-titles-heading {
         font-size: 1.5rem;
+    }
+
+    .carousel-arrow {
+        width: 40px;
+        height: 40px;
+    }
+
+    .carousel-arrow-prev {
+        left: -10px;
+    }
+
+    .carousel-arrow-next {
+        right: -10px;
     }
 
     .logo h1 {
@@ -709,8 +776,8 @@ footer {
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
-    .game-titles-grid {
-        grid-template-columns: repeat(3, 1fr);
+    .game-titles-grid .game-title-item {
+        flex: 0 0 calc(33.333% - 13.333px);
     }
 
     .game-titles-heading {
@@ -719,13 +786,26 @@ footer {
 }
 
 @media (max-width: 480px) {
-    .game-titles-grid {
-        grid-template-columns: 1fr;
+    .game-titles-grid .game-title-item {
+        flex: 0 0 100%;
     }
 
     .logo-image {
         height: 50px;
         max-width: 180px;
+    }
+
+    .carousel-arrow {
+        width: 35px;
+        height: 35px;
+    }
+
+    .carousel-arrow-prev {
+        left: 0;
+    }
+
+    .carousel-arrow-next {
+        right: 0;
     }
 
     nav {
