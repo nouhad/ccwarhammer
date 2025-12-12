@@ -210,18 +210,23 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.style.overflow = 'auto';
     }
 
-    // Game Titles Carousel
+    // Game Titles Carousel - Continuous Smooth Scrolling
     const carousel = document.querySelector('.game-titles-carousel');
     if (carousel) {
+        const wrapper = carousel.querySelector('.game-titles-wrapper');
         const grid = carousel.querySelector('.game-titles-grid');
         const prevBtn = carousel.querySelector('.carousel-arrow-prev');
         const nextBtn = carousel.querySelector('.carousel-arrow-next');
         const items = grid.querySelectorAll('.game-title-item');
         
+        // Configuration constants
+        const SCROLL_SPEED = 0.5; // pixels per frame - adjust for faster/slower scrolling
+        const SCROLL_BOUNDARY_OFFSET = 1; // small offset to handle floating point precision in scroll calculations
+        
         let currentIndex = 0;
         let itemsPerView = 4;
-        let autoScrollInterval = null;
         let isHovered = false;
+        let animationFrameId = null;
         
         // Calculate items per view based on screen size
         function updateItemsPerView() {
@@ -235,31 +240,44 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 itemsPerView = 4;
             }
-            updateCarousel();
+            updateButtonStates();
         }
         
-        // Constants
-        const CAROUSEL_GAP = 20; // matches CSS gap property
+        function updateButtonStates() {
+            const maxScroll = wrapper.scrollWidth - wrapper.clientWidth;
+            prevBtn.disabled = wrapper.scrollLeft <= 0;
+            // Use offset to account for floating point precision in scroll position
+            nextBtn.disabled = wrapper.scrollLeft >= maxScroll - SCROLL_BOUNDARY_OFFSET;
+        }
         
-        function updateCarousel() {
-            const totalItems = items.length;
-            const maxIndex = Math.max(0, totalItems - itemsPerView);
-            
-            // Clamp current index
-            currentIndex = Math.max(0, Math.min(currentIndex, maxIndex));
-            
-            // Calculate translate based on the first item's position
-            if (items.length > 0) {
-                const firstItem = items[0];
-                const itemWidth = firstItem.offsetWidth;
-                const translateX = -(currentIndex * (itemWidth + CAROUSEL_GAP));
+        function continuousScroll() {
+            if (!isHovered) {
+                const maxScroll = wrapper.scrollWidth - wrapper.clientWidth;
                 
-                grid.style.transform = `translateX(${translateX}px)`;
+                // Scroll continuously at configured speed
+                wrapper.scrollLeft += SCROLL_SPEED;
+                
+                // Loop back to start when reaching the end
+                if (wrapper.scrollLeft >= maxScroll) {
+                    wrapper.scrollLeft = 0;
+                }
+                
+                updateButtonStates();
             }
             
-            // Update button states
-            prevBtn.disabled = currentIndex === 0;
-            nextBtn.disabled = currentIndex >= maxIndex;
+            // Continue the animation
+            animationFrameId = requestAnimationFrame(continuousScroll);
+        }
+        
+        function scrollToItem(index) {
+            if (items.length > 0 && index >= 0 && index < items.length) {
+                items[index].scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'nearest', 
+                    inline: 'start' 
+                });
+                currentIndex = index;
+            }
         }
         
         function goToNext() {
@@ -267,47 +285,39 @@ document.addEventListener('DOMContentLoaded', function() {
             if (currentIndex < maxIndex) {
                 currentIndex++;
             } else {
-                // Loop back to start
                 currentIndex = 0;
             }
-            updateCarousel();
+            scrollToItem(currentIndex);
         }
         
-        function restartAutoScroll() {
-            stopAutoScroll();
-            startAutoScroll();
-        }
-        
-        function startAutoScroll() {
-            if (autoScrollInterval) {
-                clearInterval(autoScrollInterval);
+        function goToPrev() {
+            if (currentIndex > 0) {
+                currentIndex--;
+            } else {
+                currentIndex = Math.max(0, items.length - itemsPerView);
             }
-            // Auto-scroll every 3 seconds
-            autoScrollInterval = setInterval(() => {
-                if (!isHovered) {
-                    goToNext();
-                }
-            }, 3000);
+            scrollToItem(currentIndex);
         }
         
-        function stopAutoScroll() {
-            if (autoScrollInterval) {
-                clearInterval(autoScrollInterval);
-                autoScrollInterval = null;
+        function startContinuousScroll() {
+            if (animationFrameId === null) {
+                animationFrameId = requestAnimationFrame(continuousScroll);
+            }
+        }
+        
+        function stopContinuousScroll() {
+            if (animationFrameId !== null) {
+                cancelAnimationFrame(animationFrameId);
+                animationFrameId = null;
             }
         }
         
         prevBtn.addEventListener('click', () => {
-            if (currentIndex > 0) {
-                currentIndex--;
-                updateCarousel();
-            }
-            restartAutoScroll();
+            goToPrev();
         });
         
         nextBtn.addEventListener('click', () => {
             goToNext();
-            restartAutoScroll();
         });
         
         // Pause auto-scroll on hover
@@ -317,6 +327,11 @@ document.addEventListener('DOMContentLoaded', function() {
         
         carousel.addEventListener('mouseleave', () => {
             isHovered = false;
+        });
+        
+        // Update button states on scroll
+        wrapper.addEventListener('scroll', () => {
+            updateButtonStates();
         });
         
         // Update on window resize
@@ -330,7 +345,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Initial setup
         updateItemsPerView();
-        startAutoScroll();
+        startContinuousScroll();
     }
 
     // Console message for developers
