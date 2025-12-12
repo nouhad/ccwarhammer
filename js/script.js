@@ -210,7 +210,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.style.overflow = 'auto';
     }
 
-    // Game Titles Carousel
+    // Game Titles Carousel - Continuous Smooth Scrolling
     const carousel = document.querySelector('.game-titles-carousel');
     if (carousel) {
         const wrapper = carousel.querySelector('.game-titles-wrapper');
@@ -221,8 +221,9 @@ document.addEventListener('DOMContentLoaded', function() {
         
         let currentIndex = 0;
         let itemsPerView = 4;
-        let autoScrollInterval = null;
         let isHovered = false;
+        let animationFrameId = null;
+        let scrollSpeed = 0.5; // pixels per frame (adjust for faster/slower scrolling)
         
         // Calculate items per view based on screen size
         function updateItemsPerView() {
@@ -240,9 +241,28 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         function updateButtonStates() {
-            const maxIndex = Math.max(0, items.length - itemsPerView);
-            prevBtn.disabled = currentIndex === 0;
-            nextBtn.disabled = currentIndex >= maxIndex;
+            const maxScroll = wrapper.scrollWidth - wrapper.clientWidth;
+            prevBtn.disabled = wrapper.scrollLeft <= 0;
+            nextBtn.disabled = wrapper.scrollLeft >= maxScroll - 1;
+        }
+        
+        function continuousScroll() {
+            if (!isHovered) {
+                const maxScroll = wrapper.scrollWidth - wrapper.clientWidth;
+                
+                // Scroll continuously
+                wrapper.scrollLeft += scrollSpeed;
+                
+                // Loop back to start when reaching the end
+                if (wrapper.scrollLeft >= maxScroll) {
+                    wrapper.scrollLeft = 0;
+                }
+                
+                updateButtonStates();
+            }
+            
+            // Continue the animation
+            animationFrameId = requestAnimationFrame(continuousScroll);
         }
         
         function scrollToItem(index) {
@@ -252,6 +272,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     block: 'nearest', 
                     inline: 'start' 
                 });
+                currentIndex = index;
             }
         }
         
@@ -260,53 +281,39 @@ document.addEventListener('DOMContentLoaded', function() {
             if (currentIndex < maxIndex) {
                 currentIndex++;
             } else {
-                // Loop back to start
                 currentIndex = 0;
             }
             scrollToItem(currentIndex);
-            updateButtonStates();
         }
         
         function goToPrev() {
             if (currentIndex > 0) {
                 currentIndex--;
-                scrollToItem(currentIndex);
-                updateButtonStates();
+            } else {
+                currentIndex = Math.max(0, items.length - itemsPerView);
+            }
+            scrollToItem(currentIndex);
+        }
+        
+        function startContinuousScroll() {
+            if (animationFrameId === null) {
+                animationFrameId = requestAnimationFrame(continuousScroll);
             }
         }
         
-        function restartAutoScroll() {
-            stopAutoScroll();
-            startAutoScroll();
-        }
-        
-        function startAutoScroll() {
-            if (autoScrollInterval) {
-                clearInterval(autoScrollInterval);
-            }
-            // Auto-scroll every 3 seconds
-            autoScrollInterval = setInterval(() => {
-                if (!isHovered) {
-                    goToNext();
-                }
-            }, 3000);
-        }
-        
-        function stopAutoScroll() {
-            if (autoScrollInterval) {
-                clearInterval(autoScrollInterval);
-                autoScrollInterval = null;
+        function stopContinuousScroll() {
+            if (animationFrameId !== null) {
+                cancelAnimationFrame(animationFrameId);
+                animationFrameId = null;
             }
         }
         
         prevBtn.addEventListener('click', () => {
             goToPrev();
-            restartAutoScroll();
         });
         
         nextBtn.addEventListener('click', () => {
             goToNext();
-            restartAutoScroll();
         });
         
         // Pause auto-scroll on hover
@@ -316,6 +323,11 @@ document.addEventListener('DOMContentLoaded', function() {
         
         carousel.addEventListener('mouseleave', () => {
             isHovered = false;
+        });
+        
+        // Update button states on scroll
+        wrapper.addEventListener('scroll', () => {
+            updateButtonStates();
         });
         
         // Update on window resize
@@ -329,7 +341,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Initial setup
         updateItemsPerView();
-        startAutoScroll();
+        startContinuousScroll();
     }
 
     // Console message for developers
