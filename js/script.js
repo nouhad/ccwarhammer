@@ -220,7 +220,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const items = grid.querySelectorAll('.game-title-item');
         
         // Configuration constants
-        const SCROLL_SPEED = 1; // pixels per frame - adjust for faster/slower scrolling
+        const SCROLL_SPEED = 0.3; // pixels per frame - adjust for faster/slower scrolling
         const SCROLL_BOUNDARY_OFFSET = 1; // small offset to handle floating point precision in scroll calculations
         
         let currentIndex = 0;
