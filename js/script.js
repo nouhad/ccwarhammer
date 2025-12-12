@@ -219,11 +219,14 @@ document.addEventListener('DOMContentLoaded', function() {
         const nextBtn = carousel.querySelector('.carousel-arrow-next');
         const items = grid.querySelectorAll('.game-title-item');
         
+        // Configuration constants
+        const SCROLL_SPEED = 0.5; // pixels per frame - adjust for faster/slower scrolling
+        const SCROLL_BOUNDARY_OFFSET = 1; // small offset to handle floating point precision in scroll calculations
+        
         let currentIndex = 0;
         let itemsPerView = 4;
         let isHovered = false;
         let animationFrameId = null;
-        let scrollSpeed = 0.5; // pixels per frame (adjust for faster/slower scrolling)
         
         // Calculate items per view based on screen size
         function updateItemsPerView() {
@@ -243,15 +246,16 @@ document.addEventListener('DOMContentLoaded', function() {
         function updateButtonStates() {
             const maxScroll = wrapper.scrollWidth - wrapper.clientWidth;
             prevBtn.disabled = wrapper.scrollLeft <= 0;
-            nextBtn.disabled = wrapper.scrollLeft >= maxScroll - 1;
+            // Use offset to account for floating point precision in scroll position
+            nextBtn.disabled = wrapper.scrollLeft >= maxScroll - SCROLL_BOUNDARY_OFFSET;
         }
         
         function continuousScroll() {
             if (!isHovered) {
                 const maxScroll = wrapper.scrollWidth - wrapper.clientWidth;
                 
-                // Scroll continuously
-                wrapper.scrollLeft += scrollSpeed;
+                // Scroll continuously at configured speed
+                wrapper.scrollLeft += SCROLL_SPEED;
                 
                 // Loop back to start when reaching the end
                 if (wrapper.scrollLeft >= maxScroll) {
