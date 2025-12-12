@@ -213,6 +213,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Game Titles Carousel
     const carousel = document.querySelector('.game-titles-carousel');
     if (carousel) {
+        const wrapper = carousel.querySelector('.game-titles-wrapper');
         const grid = carousel.querySelector('.game-titles-grid');
         const prevBtn = carousel.querySelector('.carousel-arrow-prev');
         const nextBtn = carousel.querySelector('.carousel-arrow-next');
@@ -235,31 +236,23 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 itemsPerView = 4;
             }
-            updateCarousel();
+            updateButtonStates();
         }
         
-        // Constants
-        const CAROUSEL_GAP = 20; // matches CSS gap property
-        
-        function updateCarousel() {
-            const totalItems = items.length;
-            const maxIndex = Math.max(0, totalItems - itemsPerView);
-            
-            // Clamp current index
-            currentIndex = Math.max(0, Math.min(currentIndex, maxIndex));
-            
-            // Calculate translate based on the first item's position
-            if (items.length > 0) {
-                const firstItem = items[0];
-                const itemWidth = firstItem.offsetWidth;
-                const translateX = -(currentIndex * (itemWidth + CAROUSEL_GAP));
-                
-                grid.style.transform = `translateX(${translateX}px)`;
-            }
-            
-            // Update button states
+        function updateButtonStates() {
+            const maxIndex = Math.max(0, items.length - itemsPerView);
             prevBtn.disabled = currentIndex === 0;
             nextBtn.disabled = currentIndex >= maxIndex;
+        }
+        
+        function scrollToItem(index) {
+            if (items.length > 0 && index >= 0 && index < items.length) {
+                items[index].scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'nearest', 
+                    inline: 'start' 
+                });
+            }
         }
         
         function goToNext() {
@@ -270,7 +263,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Loop back to start
                 currentIndex = 0;
             }
-            updateCarousel();
+            scrollToItem(currentIndex);
+            updateButtonStates();
+        }
+        
+        function goToPrev() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                scrollToItem(currentIndex);
+                updateButtonStates();
+            }
         }
         
         function restartAutoScroll() {
@@ -298,10 +300,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         prevBtn.addEventListener('click', () => {
-            if (currentIndex > 0) {
-                currentIndex--;
-                updateCarousel();
-            }
+            goToPrev();
             restartAutoScroll();
         });
         

@@ -500,14 +500,21 @@ section h2 {
 }
 
 .game-titles-wrapper {
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
     padding: 0 10px;
+    scroll-behavior: smooth;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+.game-titles-wrapper::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
 }
 
 .game-titles-grid {
     display: flex;
     gap: 20px;
-    transition: transform 0.5s ease;
 }
 
 .game-titles-grid .game-title-item {
