@@ -571,6 +571,31 @@ footer {
     padding: 2rem 0;
     text-align: center;
     border-top: 1px solid #222;
+    position: relative;
+    overflow: hidden;
+}
+
+.footer-character {
+    position: absolute;
+    bottom: 0;
+    height: 100%;
+    width: auto;
+    opacity: 0.15;
+    pointer-events: none;
+    object-fit: contain;
+}
+
+.footer-character-left {
+    left: 0;
+}
+
+.footer-character-right {
+    right: 0;
+}
+
+footer .container {
+    position: relative;
+    z-index: 1;
 }
 
 /* Mobile Menu Toggle Button */
