@@ -486,6 +486,45 @@ section h2 {
 }
 
 /* Game Titles Section */
+/* Portfolio Rectangles */
+.portfolio-rectangles {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+}
+
+.portfolio-rectangle-item {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease, opacity 0.3s ease;
+    opacity: 1;
+    width: 500px;
+    height: 200px;
+}
+
+.portfolio-rectangle-item:hover {
+    box-shadow: 0 0 20px 5px rgba(135, 206, 250, 0.8);
+}
+
+.portfolio-rectangle-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Reduce opacity of non-hovered items when container is hovered */
+.portfolio-rectangles:hover .portfolio-rectangle-item {
+    opacity: 0.4;
+}
+
+.portfolio-rectangles:hover .portfolio-rectangle-item:hover {
+    opacity: 1;
+}
+
 .game-titles-heading {
     text-align: center;
     font-size: 2rem;
@@ -708,6 +747,16 @@ footer .container {
     .game-titles-grid {
         grid-template-columns: 1fr;
         gap: 20px;
+    }
+
+    .portfolio-rectangles {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .portfolio-rectangle-item {
+        width: 100%;
+        max-width: 500px;
     }
 
     .game-titles-heading {
