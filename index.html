@@ -113,77 +113,30 @@
         <section id="portfolio" class="portfolio">
             <div class="container">
                 <h2 data-en="Our Portfolio" data-zh="我们的作品集" data-ko="포트폴리오">Our Portfolio</h2>
-                <div class="portfolio-grid">
-                    <div class="portfolio-item">
-                        <img src="images/portfolio/item1.jpg" alt="Portfolio Item 1">
-                        <div class="portfolio-overlay">
-                            <span data-en="Portfolio Item 1" data-zh="作品1" data-ko="포트폴리오 아이템 1">Portfolio Item 1</span>
-                        </div>
-                    </div>
-                    <div class="portfolio-item">
-                        <img src="images/portfolio/item2.jpg" alt="Portfolio Item 2">
-                        <div class="portfolio-overlay">
-                            <span data-en="Portfolio Item 2" data-zh="作品2" data-ko="포트폴리오 아이템 2">Portfolio Item 2</span>
-                        </div>
-                    </div>
-                    <div class="portfolio-item">
-                        <img src="images/portfolio/item3.jpg" alt="Portfolio Item 3">
-                        <div class="portfolio-overlay">
-                            <span data-en="Portfolio Item 3" data-zh="作品3" data-ko="포트폴리오 아이템 3">Portfolio Item 3</span>
-                        </div>
-                    </div>
-                    <div class="portfolio-item">
-                        <img src="images/portfolio/item4.jpg" alt="Portfolio Item 4">
-                        <div class="portfolio-overlay">
-                            <span data-en="Portfolio Item 4" data-zh="作品4" data-ko="포트폴리오 아이템 4">Portfolio Item 4</span>
-                        </div>
-                    </div>
-                    <div class="portfolio-item">
-                        <img src="images/portfolio/item5.jpg" alt="Portfolio Item 5">
-                        <div class="portfolio-overlay">
-                            <span data-en="Portfolio Item 5" data-zh="作品5" data-ko="포트폴리오 아이템 5">Portfolio Item 5</span>
-                        </div>
-                    </div>
-                    <div class="portfolio-item">
-                        <img src="images/portfolio/item6.jpg" alt="Portfolio Item 6">
-                        <div class="portfolio-overlay">
-                            <span data-en="Portfolio Item 6" data-zh="作品6" data-ko="포트폴리오 아이템 6">Portfolio Item 6</span>
-                        </div>
-                    </div>
-                    <div class="portfolio-item">
-                        <img src="images/portfolio/item7.jpg" alt="Portfolio Item 7">
-                        <div class="portfolio-overlay">
-                            <span data-en="Portfolio Item 7" data-zh="作品7" data-ko="포트폴리오 아이템 7">Portfolio Item 7</span>
-                        </div>
-                    </div>
-                    <div class="portfolio-item">
-                        <img src="images/portfolio/item8.jpg" alt="Portfolio Item 8">
-                        <div class="portfolio-overlay">
-                            <span data-en="Portfolio Item 8" data-zh="作品8" data-ko="포트폴리오 아이템 8">Portfolio Item 8</span>
-                        </div>
-                    </div>
-                    <div class="portfolio-item">
-                        <img src="images/portfolio/item9.jpg" alt="Portfolio Item 9">
-                        <div class="portfolio-overlay">
-                            <span data-en="Portfolio Item 9" data-zh="作品9" data-ko="포트폴리오 아이템 9">Portfolio Item 9</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Lightbox Modal -->
-                <div id="lightbox" class="lightbox">
-                    <span class="lightbox-close">&times;</span>
-                    <img class="lightbox-content" id="lightbox-img" alt="Portfolio item expanded view">
-                    <div class="lightbox-caption" id="lightbox-caption"></div>
-                </div>
-
                 <!-- Portfolio Rectangles -->
                 <div class="portfolio-rectangles">
-                    <div class="portfolio-rectangle-item">
-                        <img src="images/portfolio/portfolio_01.png" alt="Portfolio Rectangle 1">
+                    <div class="portfolio-rectangle-item active" data-portfolio="deltaForce">
+                        <img src="images/portfolio/portfolio_01.png" alt="Delta Force Portfolio">
+                        <div class="portfolio-rectangle-label">
+                            <span data-en="Delta Force" data-zh="三角洲特种部队" data-ko="델타 포스">Delta Force</span>
+                        </div>
                     </div>
-                    <div class="portfolio-rectangle-item">
-                        <img src="images/portfolio/portfolio_02.png" alt="Portfolio Rectangle 2">
+                    <div class="portfolio-rectangle-item" data-portfolio="cfhd">
+                        <img src="images/portfolio/portfolio_02.png" alt="CFHD Portfolio">
+                        <div class="portfolio-rectangle-label">
+                            <span data-en="CrossFire HD" data-zh="穿越火线 HD" data-ko="크로스파이어 HD">CrossFire HD</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Slideshow Gallery -->
+                <div class="portfolio-gallery">
+                    <div class="portfolio-gallery-slideshow" id="portfolio-slideshow">
+                        <div class="portfolio-gallery-slide active"></div>
+                        <div class="portfolio-gallery-slide"></div>
+                    </div>
+                    <div class="portfolio-gallery-message" id="gallery-message">
+                        <p data-en="Upload images to display gallery" data-zh="上传图片以显示画廊" data-ko="갤러리를 표시하려면 이미지를 업로드하세요">Upload images to display gallery</p>
                     </div>
                 </div>
 
@@ -213,11 +166,17 @@
                 </div>
             </div>
         </section>
+
+        <!-- Character Showcase Section -->
+        <section class="character-showcase">
+            <div class="character-showcase-container">
+                <img src="images/footer_left.png" alt="Character Left" class="showcase-character showcase-character-left">
+                <img src="images/footer_right.png" alt="Character Right" class="showcase-character showcase-character-right">
+            </div>
+        </section>
     </main>
 
     <footer>
-        <img src="images/footer_left.png" alt="" class="footer-character footer-character-left">
-        <img src="images/footer_right.png" alt="" class="footer-character footer-character-right">
         <div class="container">
             <p data-en="© 2024 CC Warhammer. All rights reserved." data-zh="© 2024 CC Warhammer。保留所有权利。" data-ko="© 2024 CC Warhammer. 모든 권리 보유.">&copy; 2024 CC Warhammer. All rights reserved.</p>
         </div>

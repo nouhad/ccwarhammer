@@ -212,6 +212,136 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Game Titles - Static Display (no carousel functionality needed)
 
+    // Portfolio Gallery Slideshow
+    const portfolioRectangles = document.querySelectorAll('.portfolio-rectangle-item');
+    const gallerySlideshow = document.getElementById('portfolio-slideshow');
+    const galleryMessage = document.getElementById('gallery-message');
+    let currentPortfolio = 'deltaForce';
+    let galleryImages = [];
+    let currentGallerySlide = 0;
+    let galleryInterval = null;
+
+    // Function to load images from a portfolio folder
+    async function loadPortfolioImages(portfolio) {
+        // Try to fetch images from the portfolio folder
+        const folderPath = `images/portfolio/${portfolio}/`;
+        
+        // Since we can't list directory contents directly in the browser,
+        // we'll try to load common image names and see which ones exist
+        const possibleImages = [];
+        
+        // Try to load images with common naming patterns
+        for (let i = 1; i <= 20; i++) {
+            const extensions = ['jpg', 'jpeg', 'png', 'webp', 'gif'];
+            for (const ext of extensions) {
+                possibleImages.push(`${folderPath}${i}.${ext}`);
+                possibleImages.push(`${folderPath}image${i}.${ext}`);
+                possibleImages.push(`${folderPath}img${i}.${ext}`);
+                possibleImages.push(`${folderPath}slide${i}.${ext}`);
+            }
+        }
+
+        const validImages = [];
+        
+        // Check which images exist
+        for (const imgPath of possibleImages) {
+            try {
+                const response = await fetch(imgPath, { method: 'HEAD' });
+                if (response.ok) {
+                    validImages.push(imgPath);
+                }
+            } catch (e) {
+                // Image doesn't exist, continue
+            }
+        }
+
+        return validImages;
+    }
+
+    // Function to initialize gallery with images
+    function initializeGallery(images) {
+        galleryImages = images;
+        currentGallerySlide = 0;
+
+        if (images.length === 0) {
+            // Show message if no images
+            galleryMessage.classList.add('show');
+            gallerySlideshow.style.display = 'none';
+            if (galleryInterval) {
+                clearInterval(galleryInterval);
+                galleryInterval = null;
+            }
+            return;
+        }
+
+        // Hide message and show slideshow
+        galleryMessage.classList.remove('show');
+        gallerySlideshow.style.display = 'block';
+
+        // Set background images for the slides
+        const slides = gallerySlideshow.querySelectorAll('.portfolio-gallery-slide');
+        slides[0].style.backgroundImage = `url('${images[0]}')`;
+        if (images.length > 1) {
+            slides[1].style.backgroundImage = `url('${images[1]}')`;
+        }
+
+        // Start autoplay
+        if (galleryInterval) {
+            clearInterval(galleryInterval);
+        }
+        
+        if (images.length > 1) {
+            galleryInterval = setInterval(nextGallerySlide, 4000);
+        }
+    }
+
+    // Function to go to next slide
+    function nextGallerySlide() {
+        if (galleryImages.length <= 1) return;
+
+        const slides = gallerySlideshow.querySelectorAll('.portfolio-gallery-slide');
+        const currentSlide = slides[0].classList.contains('active') ? 0 : 1;
+        const nextSlide = currentSlide === 0 ? 1 : 0;
+
+        // Update slide index
+        currentGallerySlide = (currentGallerySlide + 1) % galleryImages.length;
+        const nextImageIndex = (currentGallerySlide + 1) % galleryImages.length;
+
+        // Fade out current, fade in next
+        slides[currentSlide].classList.remove('active');
+        slides[nextSlide].classList.add('active');
+
+        // Preload next image for smooth transition
+        setTimeout(() => {
+            slides[currentSlide].style.backgroundImage = `url('${galleryImages[nextImageIndex]}')`;
+        }, 1000);
+    }
+
+    // Handle portfolio rectangle clicks
+    portfolioRectangles.forEach(rectangle => {
+        rectangle.addEventListener('click', async function() {
+            // Update active state
+            portfolioRectangles.forEach(r => r.classList.remove('active'));
+            this.classList.add('active');
+
+            // Get portfolio type
+            const portfolio = this.getAttribute('data-portfolio');
+            if (portfolio === currentPortfolio) return;
+
+            currentPortfolio = portfolio;
+
+            // Load images for the selected portfolio
+            const images = await loadPortfolioImages(portfolio);
+            initializeGallery(images);
+        });
+    });
+
+    // Initialize with default portfolio (deltaForce)
+    (async () => {
+        const images = await loadPortfolioImages(currentPortfolio);
+        initializeGallery(images);
+    })();
+
     // Console message for developers
     console.log('CC Warhammer website loaded successfully!');
 });
