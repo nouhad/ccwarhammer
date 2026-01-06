@@ -221,21 +221,21 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentGallerySlide = 0;
     let galleryInterval = null;
 
+    // Define the images for each portfolio
+    const portfolioImageMap = {
+        'deltaForce': [
+            'images/portfolio/deltaForce/三角洲14.jpg',
+            'images/portfolio/deltaForce/三角洲15.jpg'
+        ],
+        'cfhd': [
+            'images/portfolio/cfhd/00_1.jpg',
+            'images/portfolio/cfhd/00_2.jpg',
+            'images/portfolio/cfhd/01.jpg'
+        ]
+    };
+
     // Function to load images from a portfolio folder
     async function loadPortfolioImages(portfolio) {
-        // Define the images for each portfolio
-        const portfolioImageMap = {
-            'deltaForce': [
-                'images/portfolio/deltaForce/三角洲14.jpg',
-                'images/portfolio/deltaForce/三角洲15.jpg'
-            ],
-            'cfhd': [
-                'images/portfolio/cfhd/00_1.jpg',
-                'images/portfolio/cfhd/00_2.jpg',
-                'images/portfolio/cfhd/01.jpg'
-            ]
-        };
-
         // Return the images for the specified portfolio
         const images = portfolioImageMap[portfolio] || [];
         
