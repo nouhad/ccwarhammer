@@ -16,6 +16,8 @@ body {
     background-color: #0a0a0a;
     position: relative;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Container */
@@ -565,6 +567,47 @@ section h2 {
     opacity: 1;
 }
 
+.portfolio-gallery-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(48, 160, 210, 0.8);
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.portfolio-gallery-nav:hover {
+    background-color: rgba(48, 160, 210, 1);
+    box-shadow: 0 0 15px rgba(48, 160, 210, 0.6);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.portfolio-gallery-nav:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.portfolio-gallery-prev {
+    left: 20px;
+}
+
+.portfolio-gallery-next {
+    right: 20px;
+}
+
+.portfolio-gallery-nav.hidden {
+    display: none;
+}
+
 .portfolio-gallery-message {
     position: absolute;
     top: 50%;
@@ -661,7 +704,7 @@ section h2 {
 
 /* Character Showcase Section */
 .character-showcase {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
@@ -670,7 +713,7 @@ section h2 {
     padding: 0;
     margin: 0;
     pointer-events: none;
-    z-index: 10;
+    z-index: 5;
 }
 
 .character-showcase-container {
@@ -867,6 +910,20 @@ footer .container {
 
     .portfolio-gallery-slideshow {
         height: 300px;
+    }
+
+    .portfolio-gallery-nav {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+    }
+
+    .portfolio-gallery-prev {
+        left: 10px;
+    }
+
+    .portfolio-gallery-next {
+        right: 10px;
     }
 }
 
