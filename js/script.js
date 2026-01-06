@@ -221,30 +221,27 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentGallerySlide = 0;
     let galleryInterval = null;
 
+    // Define the images for each portfolio
+    const portfolioImageMap = {
+        'deltaForce': [
+            'images/portfolio/deltaForce/三角洲14.jpg',
+            'images/portfolio/deltaForce/三角洲15.jpg'
+        ],
+        'cfhd': [
+            'images/portfolio/cfhd/00_1.jpg',
+            'images/portfolio/cfhd/00_2.jpg',
+            'images/portfolio/cfhd/01.jpg'
+        ]
+    };
+
     // Function to load images from a portfolio folder
     async function loadPortfolioImages(portfolio) {
-        // Try to fetch images from the portfolio folder
-        const folderPath = `images/portfolio/${portfolio}/`;
+        // Return the images for the specified portfolio
+        const images = portfolioImageMap[portfolio] || [];
         
-        // Since we can't list directory contents directly in the browser,
-        // we'll try to load common image names and see which ones exist
-        const possibleImages = [];
-        
-        // Try to load images with common naming patterns
-        for (let i = 1; i <= 20; i++) {
-            const extensions = ['jpg', 'jpeg', 'png', 'webp', 'gif'];
-            for (const ext of extensions) {
-                possibleImages.push(`${folderPath}${i}.${ext}`);
-                possibleImages.push(`${folderPath}image${i}.${ext}`);
-                possibleImages.push(`${folderPath}img${i}.${ext}`);
-                possibleImages.push(`${folderPath}slide${i}.${ext}`);
-            }
-        }
-
+        // Verify that images exist
         const validImages = [];
-        
-        // Check which images exist
-        for (const imgPath of possibleImages) {
+        for (const imgPath of images) {
             try {
                 const response = await fetch(imgPath, { method: 'HEAD' });
                 if (response.ok) {

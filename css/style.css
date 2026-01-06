@@ -14,6 +14,8 @@ body {
     line-height: 1.6;
     color: #e0e0e0;
     background-color: #0a0a0a;
+    position: relative;
+    min-height: 100vh;
 }
 
 /* Container */
@@ -636,13 +638,13 @@ section h2 {
 /* Contact Section */
 .contact {
     background-color: #0a0a0a;
+    padding-bottom: 50px; /* Reduced padding to minimize empty space */
 }
 
 .contact-content {
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
-    padding-top: 100px; /* Push content lower to reduce space below button */
 }
 
 .contact-subtitle {
@@ -659,11 +661,16 @@ section h2 {
 
 /* Character Showcase Section */
 .character-showcase {
-    position: relative;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
     width: 100%;
     background-color: transparent;
     padding: 0;
     margin: 0;
+    pointer-events: none;
+    z-index: 10;
 }
 
 .character-showcase-container {
@@ -673,7 +680,7 @@ section h2 {
     max-width: 100%;
     width: 100%;
     gap: 20px;
-    background-color: #0a0a0a;
+    background-color: transparent;
 }
 
 .showcase-character {
@@ -683,6 +690,7 @@ section h2 {
     max-height: 80vh;
     opacity: 0.3;
     object-fit: contain;
+    pointer-events: auto;
 }
 
 .showcase-character-left {
