@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="CC Warhammer - Our Projects and Game Titles">
-    <title>Projects - CC Warhammer</title>
+    <meta name="description" content="CC Warhammer - Delta Force Portfolio">
+    <title>Delta Force - CC Warhammer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;700&display=swap" rel="stylesheet">
@@ -39,37 +39,26 @@
     </header>
 
     <main>
-        <section id="portfolio" class="portfolio">
+        <section class="portfolio-detail">
             <div class="container">
-                <h2 data-en="Our Portfolio" data-zh="我们的作品集" data-ko="포트폴리오">Our Portfolio</h2>
-                
-                <h3 data-en="Game Titles We've Worked On" data-zh="我们参与的游戏作品" data-ko="참여한 게임 타이틀" class="game-titles-heading">Game Titles We've Worked On</h3>
-                <div class="game-titles-carousel">
-                    <div class="game-titles-grid">
-                        <div class="game-title-item">
-                            <img src="images/game-titles/title1.png" alt="Game Title 1">
-                        </div>
-                        <div class="game-title-item">
-                            <img src="images/game-titles/title2.png" alt="Game Title 2">
-                        </div>
-                        <div class="game-title-item">
-                            <img src="images/game-titles/title3.png" alt="Game Title 3">
-                        </div>
+                <h2 data-en="Delta Force Portfolio" data-zh="三角洲作品集" data-ko="델타 포스 포트폴리오">Delta Force Portfolio</h2>
+                <div class="portfolio-grid">
+                    <div class="portfolio-grid-item" data-image="images/portfolio/deltaForce/三角洲14.jpg">
+                        <img src="images/portfolio/deltaForce/三角洲14.jpg" alt="Delta Force Asset 1">
                     </div>
-                </div>
-
-                <!-- Portfolio Rectangles -->
-                <div class="portfolio-rectangles">
-                    <a href="delta-force.html" class="portfolio-rectangle-item">
-                        <img src="images/portfolio/portfolio_01.png" alt="Delta Force">
-                    </a>
-                    <a href="crossfire-hd.html" class="portfolio-rectangle-item">
-                        <img src="images/portfolio/portfolio_02.png" alt="CrossFire HD">
-                    </a>
+                    <div class="portfolio-grid-item" data-image="images/portfolio/deltaForce/三角洲15.jpg">
+                        <img src="images/portfolio/deltaForce/三角洲15.jpg" alt="Delta Force Asset 2">
+                    </div>
                 </div>
             </div>
         </section>
     </main>
+
+    <!-- Lightbox -->
+    <div id="portfolio-lightbox" class="portfolio-lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightbox-image">
+    </div>
 
     <!-- Character Showcase Section -->
     <div class="character-showcase">

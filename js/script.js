@@ -355,6 +355,54 @@ document.addEventListener('DOMContentLoaded', function() {
         initializeGallery(images);
     })();
 
+    // Portfolio Grid Lightbox
+    const portfolioLightbox = document.getElementById('portfolio-lightbox');
+    const lightboxImage = document.getElementById('lightbox-image');
+    const lightboxCloseBtn = document.querySelector('.lightbox-close');
+    const portfolioGridItems = document.querySelectorAll('.portfolio-grid-item');
+
+    // Open lightbox when grid item is clicked
+    portfolioGridItems.forEach(item => {
+        item.addEventListener('click', function() {
+            const imageSrc = this.getAttribute('data-image');
+            if (imageSrc && portfolioLightbox && lightboxImage) {
+                lightboxImage.src = imageSrc;
+                portfolioLightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        });
+    });
+
+    // Close lightbox when X is clicked
+    if (lightboxCloseBtn) {
+        lightboxCloseBtn.addEventListener('click', function() {
+            closePortfolioLightbox();
+        });
+    }
+
+    // Close lightbox when clicking outside the image
+    if (portfolioLightbox) {
+        portfolioLightbox.addEventListener('click', function(e) {
+            if (e.target === portfolioLightbox || e.target === lightboxImage) {
+                closePortfolioLightbox();
+            }
+        });
+    }
+
+    // Close lightbox with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && portfolioLightbox && portfolioLightbox.classList.contains('active')) {
+            closePortfolioLightbox();
+        }
+    });
+
+    function closePortfolioLightbox() {
+        if (portfolioLightbox) {
+            portfolioLightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    }
+
     // Console message for developers
     console.log('CC Warhammer website loaded successfully!');
 });
