@@ -216,6 +216,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const portfolioRectangles = document.querySelectorAll('.portfolio-rectangle-item');
     const gallerySlideshow = document.getElementById('portfolio-slideshow');
     const galleryMessage = document.getElementById('gallery-message');
+    const galleryPrevBtn = document.querySelector('.portfolio-gallery-prev');
+    const galleryNextBtn = document.querySelector('.portfolio-gallery-next');
     let currentPortfolio = 'deltaForce';
     let galleryImages = [];
     let currentGallerySlide = 0;
@@ -264,6 +266,8 @@ document.addEventListener('DOMContentLoaded', function() {
             // Show message if no images
             galleryMessage.classList.add('show');
             gallerySlideshow.style.display = 'none';
+            if (galleryPrevBtn) galleryPrevBtn.classList.add('hidden');
+            if (galleryNextBtn) galleryNextBtn.classList.add('hidden');
             if (galleryInterval) {
                 clearInterval(galleryInterval);
                 galleryInterval = null;
@@ -274,6 +278,15 @@ document.addEventListener('DOMContentLoaded', function() {
         // Hide message and show slideshow
         galleryMessage.classList.remove('show');
         gallerySlideshow.style.display = 'block';
+        
+        // Show navigation buttons only if there are multiple images
+        if (images.length > 1) {
+            if (galleryPrevBtn) galleryPrevBtn.classList.remove('hidden');
+            if (galleryNextBtn) galleryNextBtn.classList.remove('hidden');
+        } else {
+            if (galleryPrevBtn) galleryPrevBtn.classList.add('hidden');
+            if (galleryNextBtn) galleryNextBtn.classList.add('hidden');
+        }
 
         // Set background images for the slides
         const slides = gallerySlideshow.querySelectorAll('.portfolio-gallery-slide');
@@ -312,6 +325,55 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => {
             slides[currentSlide].style.backgroundImage = `url('${galleryImages[nextImageIndex]}')`;
         }, 1000);
+    }
+
+    // Function to go to previous slide
+    function prevGallerySlide() {
+        if (galleryImages.length <= 1) return;
+
+        const slides = gallerySlideshow.querySelectorAll('.portfolio-gallery-slide');
+        const currentSlide = slides[0].classList.contains('active') ? 0 : 1;
+        const nextSlide = currentSlide === 0 ? 1 : 0;
+
+        // Update slide index (go backwards)
+        currentGallerySlide = (currentGallerySlide - 1 + galleryImages.length) % galleryImages.length;
+        const nextImageIndex = (currentGallerySlide + 1) % galleryImages.length;
+
+        // Fade out current, fade in next
+        slides[currentSlide].classList.remove('active');
+        slides[nextSlide].classList.add('active');
+
+        // Preload next image for smooth transition
+        setTimeout(() => {
+            slides[currentSlide].style.backgroundImage = `url('${galleryImages[nextImageIndex]}')`;
+        }, 1000);
+    }
+
+    // Manual navigation button handlers
+    if (galleryNextBtn) {
+        galleryNextBtn.addEventListener('click', () => {
+            nextGallerySlide();
+            // Reset autoplay timer when manually navigating
+            if (galleryInterval) {
+                clearInterval(galleryInterval);
+                if (galleryImages.length > 1) {
+                    galleryInterval = setInterval(nextGallerySlide, 4000);
+                }
+            }
+        });
+    }
+
+    if (galleryPrevBtn) {
+        galleryPrevBtn.addEventListener('click', () => {
+            prevGallerySlide();
+            // Reset autoplay timer when manually navigating
+            if (galleryInterval) {
+                clearInterval(galleryInterval);
+                if (galleryImages.length > 1) {
+                    galleryInterval = setInterval(nextGallerySlide, 4000);
+                }
+            }
+        });
     }
 
     // Handle portfolio rectangle clicks
