@@ -525,23 +525,6 @@ section h2 {
     object-fit: cover;
 }
 
-.portfolio-rectangle-label {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(to top, rgba(10, 10, 10, 0.95) 0%, transparent 100%);
-    padding: 20px;
-    text-align: center;
-}
-
-.portfolio-rectangle-label span {
-    color: #30A0D2;
-    font-weight: bold;
-    font-size: 1.2rem;
-    text-shadow: 0 0 10px rgba(48, 160, 210, 0.5);
-}
-
 /* Portfolio Gallery Slideshow */
 .portfolio-gallery {
     margin-top: 3rem;
