@@ -658,11 +658,7 @@ section h2 {
 
 /* Character Showcase Section */
 .character-showcase {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 10;
+    position: relative;
     pointer-events: none;
     background-color: transparent;
     padding: 0;
