@@ -23,9 +23,6 @@ const portfolioImages = {
     ]
 };
 
-// Flag to track if lightbox listeners have been initialized
-let lightboxListenersInitialized = false;
-
 // Load portfolio images dynamically when page loads
 document.addEventListener('DOMContentLoaded', function() {
     const portfolioGrid = document.querySelector('.portfolio-grid');
@@ -68,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializePortfolioLightbox();
 });
 
-// Close lightbox function
+// Close lightbox function - using the same name as in script.js for compatibility
 function closePortfolioLightbox() {
     const portfolioLightbox = document.getElementById('portfolio-lightbox');
     if (portfolioLightbox) {
@@ -81,7 +78,6 @@ function closePortfolioLightbox() {
 function initializePortfolioLightbox() {
     const portfolioLightbox = document.getElementById('portfolio-lightbox');
     const lightboxImage = document.getElementById('lightbox-image');
-    const lightboxCloseBtn = document.querySelector('.lightbox-close');
     const portfolioGridItems = document.querySelectorAll('.portfolio-grid-item');
 
     // Open lightbox when grid item is clicked
@@ -95,30 +91,4 @@ function initializePortfolioLightbox() {
             }
         });
     });
-
-    // Initialize static lightbox event listeners only once
-    if (!lightboxListenersInitialized) {
-        // Close lightbox when X is clicked
-        if (lightboxCloseBtn) {
-            lightboxCloseBtn.addEventListener('click', closePortfolioLightbox);
-        }
-
-        // Close lightbox when clicking outside the image
-        if (portfolioLightbox) {
-            portfolioLightbox.addEventListener('click', function(e) {
-                if (e.target === portfolioLightbox) {
-                    closePortfolioLightbox();
-                }
-            });
-        }
-
-        // Close lightbox with Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && portfolioLightbox && portfolioLightbox.classList.contains('active')) {
-                closePortfolioLightbox();
-            }
-        });
-
-        lightboxListenersInitialized = true;
-    }
 }
