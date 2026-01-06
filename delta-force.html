@@ -14,7 +14,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
 </head>
-<body>
+<body data-portfolio="deltaForce">
     <header>
         <nav>
             <div class="logo">
@@ -23,6 +23,7 @@
                 </a>
             </div>
             <ul class="nav-links">
+                <li><a href="index.html" data-en="Home" data-zh="首页" data-ko="홈">Home</a></li>
                 <li><a href="projects.html" data-en="Projects" data-zh="项目" data-ko="프로젝트">Projects</a></li>
                 <li><a href="services.html" data-en="Services" data-zh="服务" data-ko="서비스">Services</a></li>
                 <li><a href="contact.html" data-en="Contact Us" data-zh="联系我们" data-ko="문의하기">Contact Us</a></li>
@@ -41,14 +42,10 @@
     <main>
         <section class="portfolio-detail">
             <div class="container">
-                <h2 data-en="Delta Force Portfolio" data-zh="三角洲作品集" data-ko="델타 포스 포트폴리오">Delta Force Portfolio</h2>
+                <h2 data-en="Delta Force" data-zh="三角洲" data-ko="델타 포스">Delta Force</h2>
+                <p data-en="Our talented team members at CCWarhammer worked closely with Tencent Games to deliver assets and character models for Delta Force." data-zh="我们CCWarhammer的才华横溢的团队成员与腾讯游戏紧密合作，为三角洲提供资产和角色模型。" data-ko="CCWarhammer의 재능 있는 팀원들은 Tencent Games와 긴밀히 협력하여 Delta Force를 위한 에셋과 캐릭터 모델을 제공했습니다.">Our talented team members at CCWarhammer worked closely with Tencent Games to deliver assets and character models for Delta Force.</p>
                 <div class="portfolio-grid">
-                    <div class="portfolio-grid-item" data-image="images/portfolio/deltaForce/三角洲14.jpg">
-                        <img src="images/portfolio/deltaForce/三角洲14.jpg" alt="Delta Force Asset 1">
-                    </div>
-                    <div class="portfolio-grid-item" data-image="images/portfolio/deltaForce/三角洲15.jpg">
-                        <img src="images/portfolio/deltaForce/三角洲15.jpg" alt="Delta Force Asset 2">
-                    </div>
+                    <!-- Images will be loaded dynamically by portfolio-loader.js -->
                 </div>
             </div>
         </section>
@@ -67,5 +64,6 @@
     </footer>
 
     <script src="js/script.js"></script>
+    <script src="js/portfolio-loader.js"></script>
 </body>
 </html>
