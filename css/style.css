@@ -636,12 +636,14 @@ section h2 {
 /* Contact Section */
 .contact {
     background-color: #0a0a0a;
+    padding-bottom: 300px; /* Add space for character images */
 }
 
 .contact-content {
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
+    padding-top: 100px; /* Push content lower to reduce space below button */
 }
 
 .contact-subtitle {
@@ -662,10 +664,10 @@ section h2 {
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 10;
     pointer-events: none;
     background-color: transparent;
     padding: 0;
+    z-index: 5;
 }
 
 .character-showcase-container {
@@ -700,11 +702,12 @@ footer {
     padding: 2rem 0;
     text-align: center;
     border-top: 1px solid #222;
+    position: relative;
+    z-index: 1;
 }
 
 footer .container {
     position: relative;
-    z-index: 1;
 }
 
 /* Mobile Menu Toggle Button */
