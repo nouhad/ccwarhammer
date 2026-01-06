@@ -679,7 +679,7 @@ section h2 {
 .showcase-character {
     width: auto;
     height: auto;
-    max-width: 600px;
+    max-width: min(600px, 45vw);
     max-height: 80vh;
     opacity: 0.3;
     object-fit: contain;
