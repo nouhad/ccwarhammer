@@ -636,7 +636,6 @@ section h2 {
 /* Contact Section */
 .contact {
     background-color: #0a0a0a;
-    padding-bottom: 300px; /* Add space for character images */
 }
 
 .contact-content {
@@ -660,14 +659,11 @@ section h2 {
 
 /* Character Showcase Section */
 .character-showcase {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    pointer-events: none;
+    position: relative;
+    width: 100%;
     background-color: transparent;
     padding: 0;
-    z-index: 5;
+    margin: 0;
 }
 
 .character-showcase-container {
@@ -675,7 +671,9 @@ section h2 {
     justify-content: space-between;
     align-items: flex-end;
     max-width: 100%;
+    width: 100%;
     gap: 20px;
+    background-color: #0a0a0a;
 }
 
 .showcase-character {
