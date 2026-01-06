@@ -13,13 +13,7 @@ const portfolioImages = {
         '046.jpg', '047.jpg', '048.jpg', '049.jpg', '050.jpg', '051.jpg'
     ],
     'deltaForce': [
-        '00_1.jpg', '00_2.jpg', '00_3.jpg', '01.jpg', '02.jpg', '03.jpg', '04.jpg', '05.jpg',
-        '06.jpg', '07.jpg', '08.jpg', '09.jpg', '010.jpg', '011.jpg', '012.jpg', '013.jpg',
-        '014.jpg', '015.jpg', '016.jpg', '017.jpg', '018.jpg', '019.jpg', '020.jpg', '021.jpg',
-        '022.jpg', '023.jpg', '024.jpg', '025.jpg', '026.jpg', '027.jpg', '028.jpg', '029.jpg',
-        '030.jpg', '031.jpg', '032.jpg', '033.jpg', '034.jpg', '035.jpg', '036.jpg', '037.jpg',
-        '038.jpg', '039.jpg', '040.jpg', '041.jpg', '042.jpg', '043.jpg', '044.jpg', '045.jpg',
-        '046.jpg', '047.jpg', '048.jpg', '049.jpg', '050.jpg', '051.jpg', '三角洲14.jpg', '三角洲15.jpg'
+        '三角洲14.jpg', '三角洲15.jpg'
     ]
 };
 

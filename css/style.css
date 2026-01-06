@@ -983,6 +983,17 @@ footer .container {
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 3rem;
+    padding-top: 2rem;
+}
+
+.portfolio-detail p {
+    text-align: center;
+    color: #b0b0b0;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    max-width: 900px;
+    margin: 0 auto 3rem;
+    padding: 0 2rem;
 }
 
 .portfolio-grid {
@@ -1073,6 +1084,12 @@ footer .container {
     
     .portfolio-detail h2 {
         font-size: 2rem;
+        padding-top: 1.75rem;
+    }
+    
+    .portfolio-detail p {
+        font-size: 1.02rem;
+        padding: 0 1.75rem;
     }
 }
 
@@ -1084,6 +1101,13 @@ footer .container {
     
     .portfolio-detail h2 {
         font-size: 1.5rem;
+        margin-bottom: 2rem;
+        padding-top: 1.5rem;
+    }
+    
+    .portfolio-detail p {
+        font-size: 1rem;
+        padding: 0 1.5rem;
         margin-bottom: 2rem;
     }
     
