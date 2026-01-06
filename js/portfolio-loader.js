@@ -23,6 +23,9 @@ const portfolioImages = {
     ]
 };
 
+// Flag to track if lightbox listeners have been initialized
+let lightboxListenersInitialized = false;
+
 // Load portfolio images dynamically when page loads
 document.addEventListener('DOMContentLoaded', function() {
     const portfolioGrid = document.querySelector('.portfolio-grid');
@@ -61,9 +64,18 @@ document.addEventListener('DOMContentLoaded', function() {
     
     console.log(`Loaded ${images.length} images for ${portfolioType} portfolio`);
     
-    // Re-initialize lightbox for dynamically added items
+    // Initialize lightbox for dynamically added items
     initializePortfolioLightbox();
 });
+
+// Close lightbox function
+function closePortfolioLightbox() {
+    const portfolioLightbox = document.getElementById('portfolio-lightbox');
+    if (portfolioLightbox) {
+        portfolioLightbox.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+}
 
 // Initialize lightbox for portfolio grid items
 function initializePortfolioLightbox() {
@@ -84,33 +96,29 @@ function initializePortfolioLightbox() {
         });
     });
 
-    // Close lightbox when X is clicked
-    if (lightboxCloseBtn) {
-        lightboxCloseBtn.addEventListener('click', function() {
-            closePortfolioLightbox();
-        });
-    }
+    // Initialize static lightbox event listeners only once
+    if (!lightboxListenersInitialized) {
+        // Close lightbox when X is clicked
+        if (lightboxCloseBtn) {
+            lightboxCloseBtn.addEventListener('click', closePortfolioLightbox);
+        }
 
-    // Close lightbox when clicking outside the image
-    if (portfolioLightbox) {
-        portfolioLightbox.addEventListener('click', function(e) {
-            if (e.target === portfolioLightbox) {
+        // Close lightbox when clicking outside the image
+        if (portfolioLightbox) {
+            portfolioLightbox.addEventListener('click', function(e) {
+                if (e.target === portfolioLightbox) {
+                    closePortfolioLightbox();
+                }
+            });
+        }
+
+        // Close lightbox with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && portfolioLightbox && portfolioLightbox.classList.contains('active')) {
                 closePortfolioLightbox();
             }
         });
-    }
 
-    // Close lightbox with Escape key
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && portfolioLightbox && portfolioLightbox.classList.contains('active')) {
-            closePortfolioLightbox();
-        }
-    });
-
-    function closePortfolioLightbox() {
-        if (portfolioLightbox) {
-            portfolioLightbox.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
+        lightboxListenersInitialized = true;
     }
 }
