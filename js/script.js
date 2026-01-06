@@ -383,7 +383,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Close lightbox when clicking outside the image
     if (portfolioLightbox) {
         portfolioLightbox.addEventListener('click', function(e) {
-            if (e.target === portfolioLightbox || e.target === lightboxImage) {
+            if (e.target === portfolioLightbox) {
                 closePortfolioLightbox();
             }
         });
