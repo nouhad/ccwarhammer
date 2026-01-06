@@ -56,52 +56,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Smooth scrolling for navigation links
-    const scrollLinks = document.querySelectorAll('a[href^="#"]');
-    
-    scrollLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            
-            if (targetElement) {
-                const headerOffset = 80;
-                const elementPosition = targetElement.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-
-    // Add active class to navigation on scroll
-    const sections = document.querySelectorAll('section');
-    const navItems = document.querySelectorAll('.nav-links a');
-
-    window.addEventListener('scroll', function() {
-        let current = '';
-        
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            
-            if (window.scrollY >= sectionTop - 150) {
-                current = section.getAttribute('id');
-            }
-        });
-
-        navItems.forEach(item => {
-            item.classList.remove('active');
-            if (item.getAttribute('href') === '#' + current) {
-                item.classList.add('active');
-            }
-        });
-    });
-
     // Contact form handling
     const contactForm = document.getElementById('contact-form');
     const formStatus = document.getElementById('form-status');
@@ -400,6 +354,54 @@ document.addEventListener('DOMContentLoaded', function() {
         const images = await loadPortfolioImages(currentPortfolio);
         initializeGallery(images);
     })();
+
+    // Portfolio Grid Lightbox
+    const portfolioLightbox = document.getElementById('portfolio-lightbox');
+    const lightboxImage = document.getElementById('lightbox-image');
+    const lightboxCloseBtn = document.querySelector('.lightbox-close');
+    const portfolioGridItems = document.querySelectorAll('.portfolio-grid-item');
+
+    // Open lightbox when grid item is clicked
+    portfolioGridItems.forEach(item => {
+        item.addEventListener('click', function() {
+            const imageSrc = this.getAttribute('data-image');
+            if (imageSrc && portfolioLightbox && lightboxImage) {
+                lightboxImage.src = imageSrc;
+                portfolioLightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        });
+    });
+
+    // Close lightbox when X is clicked
+    if (lightboxCloseBtn) {
+        lightboxCloseBtn.addEventListener('click', function() {
+            closePortfolioLightbox();
+        });
+    }
+
+    // Close lightbox when clicking outside the image
+    if (portfolioLightbox) {
+        portfolioLightbox.addEventListener('click', function(e) {
+            if (e.target === portfolioLightbox) {
+                closePortfolioLightbox();
+            }
+        });
+    }
+
+    // Close lightbox with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && portfolioLightbox && portfolioLightbox.classList.contains('active')) {
+            closePortfolioLightbox();
+        }
+    });
+
+    function closePortfolioLightbox() {
+        if (portfolioLightbox) {
+            portfolioLightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    }
 
     // Console message for developers
     console.log('CC Warhammer website loaded successfully!');
