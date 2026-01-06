@@ -586,6 +586,11 @@ section h2 {
     justify-content: center;
 }
 
+.portfolio-gallery-nav span {
+    display: block;
+    line-height: 1;
+}
+
 .portfolio-gallery-nav:hover {
     background-color: rgba(48, 160, 210, 1);
     box-shadow: 0 0 15px rgba(48, 160, 210, 0.6);
@@ -704,7 +709,7 @@ section h2 {
 
 /* Character Showcase Section */
 .character-showcase {
-    position: fixed;
+    position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
