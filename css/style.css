@@ -643,6 +643,7 @@ section h2 {
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
+    padding-top: 100px; /* Push content lower to reduce space below button */
 }
 
 .contact-subtitle {
