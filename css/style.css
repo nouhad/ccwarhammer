@@ -636,6 +636,8 @@ section h2 {
 /* Contact Section */
 .contact {
     background-color: #0a0a0a;
+    position: relative;
+    min-height: 600px;
 }
 
 .contact-content {
@@ -658,7 +660,10 @@ section h2 {
 
 /* Character Showcase Section */
 .character-showcase {
-    position: relative;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
     pointer-events: none;
     background-color: transparent;
     padding: 0;
