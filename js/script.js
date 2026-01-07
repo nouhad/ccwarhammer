@@ -68,7 +68,6 @@ document.addEventListener('DOMContentLoaded', function() {
             // On mobile, toggle the dropdown menu visibility
             if (window.innerWidth <= 768) {
                 const dropdown = this.closest('.dropdown');
-                const dropdownMenu = dropdown.querySelector('.dropdown-menu');
                 
                 // Toggle active state
                 dropdown.classList.toggle('active');
