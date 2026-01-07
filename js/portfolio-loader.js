@@ -14,7 +14,31 @@ const portfolioImages = {
     ],
     'deltaForce': [
         '三角洲14.jpg', '三角洲15.jpg'
-    ]
+    ],
+    'characters': [],
+    'creatures': [],
+    'props': [],
+    'vehicles': [],
+    'weapons': [],
+    'stylised': [],
+    'conceptArt': [],
+    'texturesMaterials': [],
+    'photogrammetry': []
+};
+
+// Portfolio display names
+const portfolioNames = {
+    'cfhd': 'CrossFire HD',
+    'deltaForce': 'Delta Force',
+    'characters': 'Characters',
+    'creatures': 'Creatures',
+    'props': 'Props',
+    'vehicles': 'Vehicles',
+    'weapons': 'Weapons',
+    'stylised': 'Stylised',
+    'conceptArt': 'Concept Art',
+    'texturesMaterials': 'Textures and Materials',
+    'photogrammetry': 'Photogrammetry'
 };
 
 // Load portfolio images dynamically when page loads
@@ -46,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const img = document.createElement('img');
         img.src = imagePath;
-        img.alt = `${portfolioType === 'cfhd' ? 'CrossFire HD' : 'Delta Force'} Asset ${index + 1}`;
+        img.alt = `${portfolioNames[portfolioType] || portfolioType} Asset ${index + 1}`;
         img.loading = 'lazy'; // Enable lazy loading for better performance
         
         gridItem.appendChild(img);

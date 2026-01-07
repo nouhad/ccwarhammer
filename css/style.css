@@ -78,6 +78,72 @@ nav {
     color: #30A0D2;
 }
 
+/* Dropdown Menu */
+.nav-links .dropdown {
+    position: relative;
+}
+
+.dropdown-toggle {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-toggle::after {
+    content: '▼';
+    font-size: 0.65rem;
+    margin-left: 0.4rem;
+    transition: transform 0.3s ease;
+}
+
+.dropdown:hover .dropdown-toggle::after {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 4px;
+    min-width: 220px;
+    list-style: none;
+    padding: 0.5rem 0;
+    margin-top: 0.5rem;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-menu li {
+    padding: 0;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 0.7rem 1.2rem;
+    color: #e0e0e0;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.dropdown-menu a:hover {
+    background-color: #252525;
+    color: #30A0D2;
+    padding-left: 1.5rem;
+}
+
 /* Language Switch */
 .lang-switch {
     display: flex;
@@ -841,6 +907,40 @@ footer .container {
     .nav-links a {
         display: block;
         padding: 0.5rem 1rem;
+    }
+
+    /* Mobile dropdown styles */
+    .dropdown-menu {
+        position: static;
+        opacity: 0;
+        visibility: hidden;
+        max-height: 0;
+        overflow: hidden;
+        transform: none;
+        margin-top: 0;
+        border: none;
+        border-top: 1px solid #222;
+        background-color: #0a0a0a;
+        transition: all 0.3s ease;
+    }
+
+    .dropdown.active .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        max-height: 500px;
+    }
+
+    .dropdown-menu a {
+        padding: 0.7rem 2rem;
+        font-size: 0.85rem;
+    }
+
+    .dropdown-toggle::after {
+        transition: transform 0.3s ease;
+    }
+
+    .dropdown.active .dropdown-toggle::after {
+        transform: rotate(180deg);
     }
 
     .mobile-menu-toggle {
