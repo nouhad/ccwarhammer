@@ -13,7 +13,7 @@ const portfolioImages = {
         '046.jpg', '047.jpg', '048.jpg', '049.jpg', '050.jpg', '051.jpg'
     ],
     'deltaForce': [
-        '三角洲14.jpg', '三角洲15.jpg'
+        '三角洲14.jpg'
     ],
     'characters': [],
     'creatures': [],
