@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="CC Warhammer - Contact Us">
-    <title>Contact Us - CC Warhammer</title>
+    <meta name="description" content="CC Warhammer - Props Portfolio">
+    <title>Props - CC Warhammer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;700&display=swap" rel="stylesheet">
@@ -14,7 +14,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
 </head>
-<body>
+<body data-portfolio="props">
     <header>
         <nav>
             <div class="logo">
@@ -54,16 +54,22 @@
     </header>
 
     <main>
-        <section id="contact" class="contact">
+        <section class="portfolio-detail">
             <div class="container">
-                <h2 data-en="Get in Touch" data-zh="联系我们" data-ko="문의하기">Get in Touch</h2>
-                <div class="contact-content">
-                    <p class="contact-subtitle" data-en="Let's have a chat so we can help you bring your worlds to reality, one asset at a time." data-zh="让我们聊聊，帮助您将您的世界变为现实，一次一个资产。" data-ko="대화를 나누어 여러분의 세계를 현실로 만드는 데 도움을 드리겠습니다. 한 번에 하나의 에셋으로.">Let's have a chat so we can help you bring your worlds to reality, one asset at a time.</p>
-                    <a href="mailto:meng@ccwarhammer.com" class="cta-button contact-button" data-en="Contact Us" data-zh="联系我们" data-ko="문의하기">Contact Us</a>
+                <h2 data-en="Props" data-zh="道具" data-ko="소품">Props</h2>
+                <p data-en="Browse our extensive collection of detailed props and environmental assets." data-zh="浏览我们丰富的道具和环境资产详细集合。" data-ko="세밀한 소품과 환경 에셋의 광범위한 컬렉션을 둘러보세요.">Browse our extensive collection of detailed props and environmental assets.</p>
+                <div class="portfolio-grid">
+                    <!-- Images will be loaded dynamically by portfolio-loader.js -->
                 </div>
             </div>
         </section>
     </main>
+
+    <!-- Lightbox -->
+    <div id="portfolio-lightbox" class="portfolio-lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightbox-image">
+    </div>
 
     <footer>
         <div class="container">
@@ -72,5 +78,6 @@
     </footer>
 
     <script src="js/script.js"></script>
+    <script src="js/portfolio-loader.js"></script>
 </body>
 </html>

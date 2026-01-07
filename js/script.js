@@ -47,14 +47,40 @@ document.addEventListener('DOMContentLoaded', function() {
             navLinks.classList.toggle('active');
         });
 
-        // Close mobile menu when a link is clicked
+        // Close mobile menu when a link is clicked (except dropdown toggle)
         navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', function() {
-                mobileMenuToggle.classList.remove('active');
-                navLinks.classList.remove('active');
+            link.addEventListener('click', function(e) {
+                // Don't close menu if clicking dropdown toggle
+                if (!this.classList.contains('dropdown-toggle')) {
+                    mobileMenuToggle.classList.remove('active');
+                    navLinks.classList.remove('active');
+                }
             });
         });
     }
+
+    // Dropdown menu functionality for mobile
+    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+    dropdownToggles.forEach(toggle => {
+        toggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // On mobile, toggle the dropdown menu visibility
+            if (window.innerWidth <= 768) {
+                const dropdown = this.closest('.dropdown');
+                
+                // Toggle active state
+                dropdown.classList.toggle('active');
+                
+                // Close other dropdowns
+                document.querySelectorAll('.dropdown').forEach(otherDropdown => {
+                    if (otherDropdown !== dropdown) {
+                        otherDropdown.classList.remove('active');
+                    }
+                });
+            }
+        });
+    });
 
     // Contact form handling
     const contactForm = document.getElementById('contact-form');

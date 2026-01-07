@@ -1,14 +1,45 @@
 # Portfolio Images
 
-This directory contains placeholder images for the portfolio section.
+This directory contains images for portfolio pages organized by category.
 
-## Replacing Placeholder Images
+## Folder Structure
 
-To add your own portfolio images:
+- **cfhd/** - CrossFire HD project images
+- **deltaForce/** - Delta Force project images
+- **characters/** - Character models and designs
+- **creatures/** - Creature designs and models
+- **props/** - Props and environmental assets
+- **vehicles/** - Vehicle models (civilian and military)
+- **weapons/** - Weapon models
+- **stylised/** - Stylised and artistic 3D assets
+- **conceptArt/** - Concept art illustrations
+- **texturesMaterials/** - Texture and material work
+- **photogrammetry/** - Photogrammetry-based assets
 
-1. Replace `item1.jpg` through `item8.jpg` with your own images
-2. **Recommended dimensions**: 400x300 pixels (landscape format)
-3. **Supported formats**: JPG, PNG, WebP
-4. Keep the same filenames or update the references in `index.html`
+## How to Add Images
 
-The portfolio grid displays 8 items in a 4x2 layout on desktop, adapting responsively for mobile devices.
+1. Place your images in the appropriate folder
+2. Update the corresponding array in `/js/portfolio-loader.js` with the image filenames
+3. Images will be automatically loaded and displayed on the portfolio pages
+
+Example for adding images to the Characters portfolio:
+```javascript
+'characters': [
+    'character1.jpg',
+    'character2.jpg',
+    'character3.jpg'
+]
+```
+
+## Supported Formats
+
+- JPG/JPEG
+- PNG
+- WebP
+
+## Recommended Image Specifications
+
+- Resolution: 1920x1080 or higher
+- Aspect Ratio: 16:9 recommended
+- File size: Optimized for web (< 2MB per image)
+
