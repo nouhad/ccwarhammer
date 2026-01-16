@@ -278,8 +278,6 @@ section h2 {
     letter-spacing: 1px;
     text-transform: uppercase;
     position: relative;
-    display: inline-block;
-    width: 100%;
 }
 
 section h2::before {
@@ -393,7 +391,6 @@ section h2::before {
     font-size: 1.1rem;
     line-height: 1.9;
     font-weight: 400;
-    text-align: justify;
 }
 
 /* Services Section */
