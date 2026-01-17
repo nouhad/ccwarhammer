@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 header.classList.remove('scrolled-hidden');
                 header.classList.add('scrolled-visible');
                 if (floatingLogo) {
-                    floatingLogo.classList.add('visible');
+                    floatingLogo.classList.remove('visible');
                 }
 
                 // Hide navbar again after 2 seconds
@@ -53,6 +53,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (currentPos > scrollThreshold) {
                         header.classList.add('scrolled-hidden');
                         header.classList.remove('scrolled-visible');
+                        if (floatingLogo) {
+                            floatingLogo.classList.add('visible');
+                        }
                     }
                 }, 2000);
             }, 150);
