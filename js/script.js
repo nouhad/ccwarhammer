@@ -5,6 +5,88 @@ document.addEventListener('DOMContentLoaded', function() {
     // Current language state
     let currentLang = 'en';
 
+    // Navbar scroll behavior
+    const header = document.querySelector('header');
+    const floatingLogo = document.getElementById('floating-logo');
+    let lastScrollTop = 0;
+    let scrollTimeout = null;
+    let hideTimeout = null;
+    const scrollThreshold = 100; // Start hiding after scrolling 100px
+
+    function handleScroll() {
+        const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+        // Clear existing timeouts
+        if (scrollTimeout) {
+            clearTimeout(scrollTimeout);
+        }
+        if (hideTimeout) {
+            clearTimeout(hideTimeout);
+        }
+
+        // If scrolled down past threshold
+        if (currentScroll > scrollThreshold) {
+            // Scrolling down
+            if (currentScroll > lastScrollTop) {
+                header.classList.add('scrolled-hidden');
+                header.classList.remove('scrolled-visible');
+                if (floatingLogo) {
+                    floatingLogo.classList.add('visible');
+                }
+            }
+            // Scrolling up
+            else {
+                header.classList.remove('scrolled-hidden');
+                header.classList.add('scrolled-visible');
+                if (floatingLogo) {
+                    floatingLogo.classList.remove('visible');
+                }
+            }
+
+            // Set timeout to show navbar briefly when scrolling stops
+            scrollTimeout = setTimeout(function() {
+                header.classList.remove('scrolled-hidden');
+                header.classList.add('scrolled-visible');
+                if (floatingLogo) {
+                    floatingLogo.classList.remove('visible');
+                }
+
+                // Hide navbar again after 2 seconds
+                hideTimeout = setTimeout(function() {
+                    const currentPos = window.pageYOffset || document.documentElement.scrollTop;
+                    if (currentPos > scrollThreshold) {
+                        header.classList.add('scrolled-hidden');
+                        header.classList.remove('scrolled-visible');
+                        if (floatingLogo) {
+                            floatingLogo.classList.add('visible');
+                        }
+                    }
+                }, 2000);
+            }, 150);
+        } else {
+            // At top of page
+            header.classList.remove('scrolled-hidden');
+            header.classList.remove('scrolled-visible');
+            if (floatingLogo) {
+                floatingLogo.classList.remove('visible');
+            }
+        }
+
+        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+    }
+
+    // Throttle scroll events for performance
+    let ticking = false;
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            window.requestAnimationFrame(function() {
+                handleScroll();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+
     // Language Switch functionality
     const langButtons = document.querySelectorAll('.lang-btn');
     
