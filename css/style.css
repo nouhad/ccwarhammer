@@ -264,7 +264,7 @@ nav {
 }
 
 .hero-content {
-    max-width: 800px;
+    max-width: 900px;
     padding: 0 20px;
     position: relative;
     z-index: 1;
@@ -281,6 +281,7 @@ nav {
         inset 0 1px 0 rgba(48, 160, 210, 0.15);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
+    margin-bottom: 2rem;
 }
 
 .hero-content h2 {
@@ -292,7 +293,7 @@ nav {
 
 .hero-content p {
     font-size: 1.2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 0;
     opacity: 1;
     color: #e0e0e0;
 }
