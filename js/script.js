@@ -10,14 +10,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const floatingLogo = document.getElementById('floating-logo');
     let lastScrollTop = 0;
     let scrollTimeout = null;
+    let hideTimeout = null;
     const scrollThreshold = 100; // Start hiding after scrolling 100px
 
     function handleScroll() {
         const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
 
-        // Clear existing timeout
+        // Clear existing timeouts
         if (scrollTimeout) {
             clearTimeout(scrollTimeout);
+        }
+        if (hideTimeout) {
+            clearTimeout(hideTimeout);
         }
 
         // If scrolled down past threshold
@@ -48,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
 
                 // Hide navbar again after 2 seconds
-                setTimeout(function() {
+                hideTimeout = setTimeout(function() {
                     const currentPos = window.pageYOffset || document.documentElement.scrollTop;
                     if (currentPos > scrollThreshold) {
                         header.classList.add('scrolled-hidden');

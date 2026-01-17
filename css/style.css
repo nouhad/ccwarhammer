@@ -340,7 +340,7 @@ section h2::before {
     background-size: 50%;
     position: relative;
     padding: 60px 0;
-    min-height: 540px; /* Minimum height to accommodate 50% of 1080px logo */
+    min-height: 540px; /* Minimum height to prevent logo background from being cut off */
 }
 
 .about::before {
