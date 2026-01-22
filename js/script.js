@@ -288,8 +288,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Define the images for each portfolio
     const portfolioImageMap = {
         'deltaForce': [
-            'images/portfolio/deltaForce/三角洲14.jpg',
-            'images/portfolio/deltaForce/三角洲15.jpg'
+            'images/portfolio/deltaForce/三角洲14.jpg'
         ],
         'cfhd': [
             'images/portfolio/cfhd/00_1.jpg',

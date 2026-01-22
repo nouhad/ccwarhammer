@@ -15,7 +15,7 @@ const portfolioImages = {
     'deltaForce': [
         '三角洲02.jpg', '三角洲03.jpg', '三角洲04.jpg', '三角洲05.jpg', '三角洲06.jpg', '三角洲07.jpg',
         '三角洲08.jpg', '三角洲09.jpg', '三角洲10.jpg', '三角洲11.jpg', '三角洲12.jpg', '三角洲13.jpg',
-        '三角洲14.jpg', '三角洲15.jpg', '三角洲16.jpg', '三角洲17.jpg', '三角洲18.jpg', '三角洲19.jpg',
+        '三角洲14.jpg', '三角洲16.jpg', '三角洲17.jpg', '三角洲18.jpg', '三角洲19.jpg',
         '三角洲20.jpg'
     ],
     'characters': [
