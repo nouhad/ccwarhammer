@@ -270,6 +270,16 @@ nav {
     z-index: 1;
 }
 
+.hero-banner-logo {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto 2rem;
+    filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.6));
+}
+
 .hero-text-box {
     position: relative;
     padding: 40px 35px;
@@ -348,7 +358,7 @@ section h2::before {
 /* About Section */
 .about {
     background-color: #0d0d0d;
-    background-image: url('../images/logo/logo.png');
+    background-image: url('../images/logo/zcForgeTransparentBanner.png');
     background-repeat: no-repeat;
     background-position: center;
     background-size: 50%;
