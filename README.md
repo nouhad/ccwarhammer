@@ -1,4 +1,4 @@
-# CC Warhammer
+# ZC Forge Studios
 
 Professional 3D art studio website with multi-language support (English/Chinese).
 
@@ -47,7 +47,7 @@ ccwarhammer/
 The website header displays a logo image in the top-left corner. To use your own logo:
 
 1. **Upload Logo**: Place your logo image in the `images/logo/` directory
-   - File name: `logo.png` (or `logo.svg` for vector graphics)
+   - File name: `zcForgeTransparent.jpg` (or `logo.svg` for vector graphics)
    - Recommended size: 150-200px width × 40-60px height for PNG
    - Format: PNG with transparent background (recommended) or SVG
    - File size: Keep under 100KB for optimal loading

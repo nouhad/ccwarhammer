@@ -1,4 +1,4 @@
-// CC Warhammer JavaScript
+// ZC Forge Studios JavaScript
 // Multi-language support and interactive features
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -511,5 +511,5 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Console message for developers
-    console.log('CC Warhammer website loaded successfully!');
+    console.log('ZC Forge Studios website loaded successfully!');
 });
